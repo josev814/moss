@@ -1,0 +1,15 @@
+# DO NOT EDIT BELOW
+name: plagiarism
+services:
+  moss_check:
+    container_name: moss
+    image: moss_plagiarism
+    build:
+      context: ../
+      dockerfile: ./BuildTools/dockerfile
+    env_file:
+      - .env_vars
+    restart: unless-stopped
+    volumes:
+      - ../assignments:/assignments
+      - ../app:/app
