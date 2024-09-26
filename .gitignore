@@ -1,2 +1,3 @@
 assignments/*
 **/.env_vars
+!assignments/.gitkeep
