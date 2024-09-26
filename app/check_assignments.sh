@@ -26,6 +26,13 @@ do
 
     for code_type in $(ls -A)
     do
+        # skipping files in assignments directory
+        # we only process directories
+        if [[ -f "${code_type}" ]]
+        then
+            continue
+        fi
+
         for assignment in $(ls -A "${code_type}")
         do
             cur_path="${BASE_DIR}/${code_type}/${assignment}"
