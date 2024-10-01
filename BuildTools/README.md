@@ -42,7 +42,7 @@ There will be 3 files
 ### Stand up the containers
 Run the following command to run moss
 ```powershell
-docker compose -f .\BuildTools\docker-compose.yml up --force-recreate --remove-orphans --build
+docker compose -f .\BuildTools\docker-compose.yml up -d --force-recreate --remove-orphans --build
 ```
 
 When looking at Docker Desktop you will now see the container running
