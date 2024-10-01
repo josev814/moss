@@ -13,6 +13,18 @@ echo "Base Checksum: ${SET_CHECKSUM}"
 # Activate the Python virtual environment
 source /pyvenv/bin/activate
 
+function run_extensions() {
+    for extension in $(ls /app/extensions)
+    do
+        if [[ "${extension}" =~ .py$ ]]
+        then
+            echo "Running python ${extension}"
+            python /app/extensions/${extension}
+            echo "Done running ${extension}"
+        fi
+    done
+}
+
 BASE_DIR='/assignments'
 cd ${BASE_DIR}
 while true
@@ -63,11 +75,7 @@ do
                     echo '##### Downloaded HTML results #####'
                     echo "Open ${html_file} to view the results"
                     echo '##### Converting results to CSV #####'
-                    python /app/html_result_to_csv.py
-                    if [[ $? -eq 0 ]]
-                    then
-                        echo '##### Converted results to CSV #####'
-                    fi
+                    run_extensions
                 fi
             fi
         done
