@@ -12,7 +12,7 @@ Open a Powershell Command Line (Powershell in your start menu)
 
 Change to the directory where these files exist
 
-Copy the `example.env_vars` and save it as `.env`, and replace the placeholders with your own values
+Copy the `example.env_vars` and save it as `.env_vars`, and replace the placeholders with your own values
 
 Start the docker containers
 
