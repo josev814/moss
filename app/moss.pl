@@ -164,7 +164,7 @@ $usage = "usage: moss [-x] [-l language] [-d] [-b basefile1] ... [-b basefilen] 
 #
 # The userid is used to authenticate your queries to the server; don't change it!
 #
-$userid = $_ENV{'USER_ID'};
+$userid = $ENV{'USER_ID'};
 
 #
 # Process the command line options.  This is done in a non-standard
@@ -290,6 +290,12 @@ die "Could not connect to server $server: $!\n" unless $sock;
 print "Connected to server\n";
 $sock->autoflush(1);
 
+sub run_server_cmd {
+    my ($cmd) = @_;
+    print "Running cmd ${cmd}\n";
+    print $sock "${cmd}\n";
+}
+
 sub read_from_server {
     $msg = <$sock>;
     print $msg;
@@ -320,23 +326,23 @@ sub upload_file {
 }
 
 print "Authenticating \n";
-print $sock "moss $userid\n";      # authenticate user
-print $sock "directory $opt_d\n";
-print $sock "X $opt_x\n";
-print $sock "maxmatches $opt_m\n";
-print $sock "show $opt_n\n";
+run_server_cmd("moss $userid");      # authenticate user
+run_server_cmd("directory $opt_d");
+run_server_cmd("X $opt_x");
+run_server_cmd("maxmatches $opt_m");
+run_server_cmd("show $opt_n");
 
 #
 # confirm that we have a supported languages
 #
 print "Verifying language\n";
-print $sock "language $opt_l\n";
+run_server_cmd("language $opt_l");
 print "$sock\n";
 $msg = <$sock>;
 print "Language supported: $msg\n";
 chop($msg);
 if ($msg eq "no") {
-    print $sock "end\n";
+    run_server_cmd("end");
     print "$opt_l Not supported\n";
     die "Unrecognized language $opt_l.";
 }
@@ -352,8 +358,10 @@ foreach $file (@ARGV) {
     &upload_file($file,$setid++,$opt_l);
 }
 
-print $sock "query 0 $opt_c\n";
+run_server_cmd("query 0 $opt_c");
+
 print "Query submitted.  Waiting for the server's response.\n";
 &read_from_server();
-print $sock "end\n";
+
+run_server_cmd("end");
 close($sock);

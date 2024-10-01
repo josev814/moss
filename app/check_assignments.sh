@@ -63,7 +63,7 @@ do
                     echo '##### Downloaded HTML results #####'
                     echo "Open ${html_file} to view the results"
                     echo '##### Converting results to CSV #####'
-                    python /app/moss_to_csv.py
+                    python /app/html_result_to_csv.py
                     if [[ $? -eq 0 ]]
                     then
                         echo '##### Converted results to CSV #####'
