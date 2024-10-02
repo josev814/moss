@@ -1,0 +1,7 @@
+*           text=auto
+*.txt		text eol=lf
+*.sh		text eol=lf
+*.png		-text
+*.env_vars  text eol=lf
+*.py        text eol=lf
+*.pl        text eol=lf
