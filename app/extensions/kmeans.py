@@ -157,7 +157,7 @@ if __name__ == '__main__':
         save_path = save_paths[i]
         f_count = len(files_to_compare)
         clusters = 4 if f_count > 4 else 2
-        if (os.path.isfile(save_path, f'{clusters}.png')):
+        if (os.path.isfile(os.path.join(save_path, f'{clusters}.png'))):
             # don't run kmeans if we've already done so against the assignment
             continue
 
