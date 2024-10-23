@@ -13,3 +13,7 @@ services:
     volumes:
       - ../assignments:/assignments
       - ../app:/app
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
