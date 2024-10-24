@@ -8,13 +8,14 @@ import matplotlib.pyplot as plt
 ASSIGNMENTS_DIR = os.path.join(os.path.sep, 'assignments')
 DEFITION_MATCH = re.compile('^([\s]+)?def\s')
 
-ac = AssignmentCollector(ASSIGNMENTS_DIR)
+ac = AssignmentCollector(ASSIGNMENTS_DIR, 'pairwise_dist')
 if __name__ == '__main__':
     
     file_paths, save_paths = ac.collect_assignments()
 
     for i in range(len(file_paths)):
         files_to_compare = file_paths[i]
+        save_path = save_paths[i]
         f_count = len(files_to_compare)
         
         # Step 2: Pull the data for the assignment
@@ -36,7 +37,7 @@ if __name__ == '__main__':
         plt.show()
 
         plt.savefig(
-            os.path.join('/assignments/python/', f'{i}.png'),
+            os.path.join(save_path, f'assignment_{i}_pairwise.png'),
             dpi=300,
             bbox_inches='tight'
         )
