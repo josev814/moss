@@ -5,15 +5,12 @@ from py_classes.assignment_collector import AssignmentCollector
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics.pairwise import pairwise_distances
+import matplotlib.pyplot as plt
 
 ASSIGNMENTS_DIR = os.path.join(os.path.sep, 'assignments')
 DEFITION_MATCH = re.compile('^([\s]+)?def\s')
 
-"""
-    Task 1:
-    Implement a clustering algorithm to group similar code submissions using an ML method like k-means.
-    This will help identify clusters of highly similar code for further investigation.
-"""
 ac = AssignmentCollector(ASSIGNMENTS_DIR)
 if __name__ == '__main__':
     
