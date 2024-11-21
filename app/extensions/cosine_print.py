@@ -1,11 +1,10 @@
-### create kmeans process here
+### create process here
 import os
 import re
 from py_classes.assignment_collector import AssignmentCollector
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.metrics.pairwise import pairwise_distances
 import matplotlib.pyplot as plt
 
 ASSIGNMENTS_DIR = os.path.join(os.path.sep, 'assignments')
